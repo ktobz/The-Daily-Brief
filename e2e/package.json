@@ -1,0 +1,13 @@
+{
+  "name": "daily-brief-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Automated end-to-end verification for The Daily Brief (Selenium + Chrome).",
+  "scripts": {
+    "e2e": "node daily-brief.e2e.js",
+    "e2e:headless": "node daily-brief.e2e.js --headless"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.25.0"
+  }
+}

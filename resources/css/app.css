@@ -1,0 +1,87 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+    --color-brand: #a0150f;
+    --color-brand-dark: #7c0f0b;
+    --color-brand-light: #c62828;
+    --color-brand-50: #fdf3f2;
+    --color-brand-100: #fbe5e3;
+    --color-ink: #111111;
+    --color-paper: #faf9f7;
+    --color-line: #e7e3dd;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+}
+
+.font-serif {
+    font-family: var(--font-serif);
+}
+
+.prose-article {
+    font-family: var(--font-serif);
+    font-size: 1.175rem;
+    line-height: 1.85;
+    color: #1f1e1c;
+}
+
+.prose-article p {
+    margin-bottom: 1.5rem;
+}
+
+.prose-article a {
+    color: var(--color-brand);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.prose-article h2,
+.prose-article h3 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 2rem 0 1rem;
+}
+
+.prose-article blockquote {
+    border-left: 4px solid var(--color-brand);
+    padding-left: 1.25rem;
+    font-style: italic;
+    color: #3d3b37;
+    margin: 1.75rem 0;
+}
+
+.ticker-marquee {
+    animation: ticker-scroll 40s linear infinite;
+}
+
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.paywall-blur {
+    filter: blur(10px);
+    user-select: none;
+    pointer-events: none;
+}
