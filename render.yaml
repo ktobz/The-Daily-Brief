@@ -1,0 +1,103 @@
+services:
+  # Laravel Backend
+  - type: web
+    name: the-daily-brief-api
+    env: php
+    buildCommand: composer install --no-dev --optimize-autoloader && php artisan key:generate
+    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        value: https://the-daily-brief-api.onrender.com
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: the-daily-brief-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: the-daily-brief-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: the-daily-brief-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: the-daily-brief-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: the-daily-brief-db
+          property: password
+      - key: CACHE_DRIVER
+        value: file
+      - key: SESSION_DRIVER
+        value: file
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: FILESYSTEM_DISK
+        value: local
+      - key: LOG_CHANNEL
+        value: errorlog
+      - key: FRONTEND_URL
+        value: https://the-daily-brief.vercel.app
+      # Add your integration keys here after deployment
+      - key: FLW_PUBLIC_KEY
+        sync: false
+      - key: FLW_SECRET_KEY
+        sync: false
+      - key: FLW_ENCRYPTION_KEY
+        sync: false
+      - key: FLW_SECRET_HASH
+        sync: false
+      - key: FIREBASE_API_KEY
+        sync: false
+      - key: FIREBASE_AUTH_DOMAIN
+        sync: false
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_STORAGE_BUCKET
+        sync: false
+      - key: FIREBASE_MESSAGING_SENDER_ID
+        sync: false
+      - key: FIREBASE_APP_ID
+        sync: false
+      - key: FIREBASE_MEASUREMENT_ID
+        sync: false
+      - key: FIREBASE_VAPID_KEY
+        sync: false
+      - key: FIREBASE_DATABASE_URL
+        sync: false
+      - key: FIREBASE_CREDENTIALS
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
+        value: https://the-daily-brief-api.onrender.com/api/auth/google/callback
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: AWS_DEFAULT_REGION
+        sync: false
+      - key: AWS_BUCKET
+        sync: false
+      - key: FLW_REDIRECT_URL
+        value: https://the-daily-brief-api.onrender.com/flutterwave/callback
+
+  # PostgreSQL Database
+  - type: pserv
+    name: the-daily-brief-db
+    databaseName: the_daily_brief
+    user: the_daily_brief_user
+    plan: free
+    maxconnections: 20
